@@ -1,5 +1,0 @@
-[ios]
-r1 ansible_host=172.16.1.111
-
-[nxos]
-s1 ansible_host=172.16.1.112
