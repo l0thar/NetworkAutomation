@@ -75,5 +75,9 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.provision "shell", path: "NetOpsWorkshop/install/install.sh"
+  config.vm.provision "shell", inline: <<-SHELL
+    cd /vagrant
+    git clone https://github.com/ipspace/NetOpsWorkshop.git
+    bash /vagrant/NetOpsWorkshop/install/install.sh
+  SHELL
 end
