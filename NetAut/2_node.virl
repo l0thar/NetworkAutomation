@@ -9,7 +9,7 @@
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_ip" type="String">172.16.1.112</entry>
             <entry key="config" type="String">!
-! Last configuration change at 22:50:03 UTC Tue Sep 4 2018
+! Last configuration change at 05:56:35 UTC Thu Sep 6 2018
 !
 version 15.2
 service timestamps debug datetime msec
@@ -33,6 +33,7 @@ vrf definition Mgmt-intf
 !
 enable password cisco
 !
+username cisco privilege 15 password 0 cisco
 no aaa new-model
 !
 !
@@ -45,6 +46,7 @@ vtp mode transparent
 !
 !
 no ip domain-lookup
+ip domain-name lab.local
 ip cef
 no ipv6 cef
 !
@@ -90,6 +92,7 @@ ip forward-protocol nd
 no ip http server
 no ip http secure-server
 !
+ip ssh version 2
 !
 !
 !
@@ -127,11 +130,12 @@ banner login `
 !
 line con 0
  password cisco
+ logging synchronous
 line aux 0
 line vty 0 4
  exec-timeout 720 0
  password cisco
- login
+ login local
  transport input telnet ssh
 !
 !
@@ -146,7 +150,7 @@ end
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_ip" type="String">172.16.1.111</entry>
             <entry key="config" type="String">!
-! Last configuration change at 22:50:23 UTC Tue Sep 4 2018
+! Last configuration change at 05:53:31 UTC Thu Sep 6 2018
 !
 version 15.6
 service timestamps debug datetime msec
@@ -189,7 +193,7 @@ mmi snmp-timeout 180
 !
 !
 no ip domain lookup
-ip domain name virl.info
+ip domain name lab.local
 ip cef
 ipv6 unicast-routing
 ipv6 cef
@@ -245,6 +249,7 @@ ip forward-protocol nd
 !
 no ip http server
 no ip http secure-server
+ip ssh version 2
 ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh server algorithm authentication password
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
@@ -285,6 +290,7 @@ banner login `
 !
 line con 0
  password cisco
+ logging synchronous
 line aux 0
 line vty 0 4
  exec-timeout 720 0
